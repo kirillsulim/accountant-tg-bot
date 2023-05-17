@@ -1,0 +1,2 @@
+from tagil import Application
+

@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "accountant-tg-bot"
+version = "0.1.0"
+description = "Telegram bot for accounting in small group"
+authors = ["Kirill Sulim <kirillsulim@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "accountant_tg_bot"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+tagil = "^0.2.0"
+python-telegram-bot = "^20.3"
+finac = "^0.5.7"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
