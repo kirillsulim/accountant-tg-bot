@@ -1,6 +1,12 @@
 from typing import List
+from enum import (
+    Enum as PyEnum,
+    auto,
+    unique,
+)
 
 from sqlalchemy import (
+    Enum,
     String,
     Text,
     ForeignKey,
@@ -24,6 +30,14 @@ class Account(Base):
     name: Mapped[str] = mapped_column(Text)
 
     records: Mapped[List["Record"]] = relationship(back_populates="account")
+    active_transactions: Mapped[List["Transaction"]] = relationship(back_populates="approver")
+
+
+@unique
+class TransactionState(PyEnum):
+    STARTED = auto()
+    ACCEPTED = auto()
+    DECLINED = auto()
 
 
 class Transaction(Base):
@@ -31,6 +45,10 @@ class Transaction(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     description: Mapped[str] = mapped_column(Text)
+    state: Mapped[TransactionState] = mapped_column(Enum(TransactionState))
+
+    approver_id: Mapped[int] = mapped_column(ForeignKey("account.id"))
+    approver: Mapped[Account] = relationship(back_populates="active_transactions")
 
     records: Mapped[List["Record"]] = relationship(back_populates="transaction")
 

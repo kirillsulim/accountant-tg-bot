@@ -12,10 +12,12 @@ python = "^3.10"
 tagil = "^0.2.0"
 python-telegram-bot = "^20.3"
 finac = "^0.5.7"
+aiosqlite = "^0.19.0"
 
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.3.1"
+pytest-asyncio = "^0.21.0"
 
 [tool.pytest.ini_options]
 pythonpath = [
