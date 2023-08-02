@@ -9,7 +9,7 @@ from sqlalchemy.orm import (
     Session,
 )
 
-from accounting.model import (
+from db.model import (
     Account,
     Base,
 )
